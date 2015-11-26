@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>IRProject</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>WebIndex</display-name>
+    <servlet-name>WebIndex</servlet-name>
+    <servlet-class>websearch.WebIndex</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WebIndex</servlet-name>
+    <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WebSearch</display-name>
+    <servlet-name>WebSearch</servlet-name>
+    <servlet-class>websearch.WebSearch</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WebSearch</servlet-name>
+    <url-pattern>/result</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WebResult</display-name>
+    <servlet-name>WebResult</servlet-name>
+    <servlet-class>websearch.WebResult</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WebResult</servlet-name>
+    <url-pattern>/doc</url-pattern>
+  </servlet-mapping>
+</web-app>
