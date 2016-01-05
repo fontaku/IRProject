@@ -1,7 +1,5 @@
 package lucene;
 
-import java.io.PrintWriter;
-
 import org.apache.lucene.document.Document;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.ScoreDoc;

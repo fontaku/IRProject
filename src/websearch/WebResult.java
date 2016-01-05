@@ -2,17 +2,13 @@ package websearch;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lucene.Result;
 import lucene.SearchEngine;
-
-import org.apache.lucene.queryparser.classic.ParseException;
 
 /**
  * Servlet implementation class WebResult
@@ -41,7 +37,7 @@ public class WebResult extends HttpServlet {
     	String docId = request.getParameter("d");
         
 		SearchEngine se = new SearchEngine();
-		String temp = se.getDocString(Integer.valueOf(docId));
+		String temp = se.getDocString(Integer.parseInt(docId));
 		out.println(temp);
 
 		out.println("<br><button onclick=goBack()>Go Back</button>");

@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.File;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,7 +29,7 @@ public class Indexer {
     
     public IndexWriter getIndexWriter(boolean create) throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if (indexWriter == null) {
-            Directory indexDir = FSDirectory.open(new File("index-directory-for-test"));
+            Directory indexDir = FSDirectory.open(new File("index-directory-new"));
             IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_4_10_2, new ThaiAnalyzer());
             indexWriter = new IndexWriter(indexDir, config);
         }
@@ -44,13 +43,11 @@ public class Indexer {
    }
     
     public void index(String id, String content) throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-//        String toPrint = "Indexing: " + id;
         IndexWriter writer = getIndexWriter(false);
         Document doc = new Document();
         doc.add(new StringField("id", id, Field.Store.YES));
         doc.add(new TextField("content", content, Field.Store.YES));
         writer.addDocument(doc);
-//        return toPrint;
     }
     
     public void rebuildIndexes() throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
@@ -61,20 +58,21 @@ public class Indexer {
           //
           // Index all Accommodation entries
           //          
-          Files.walk(Paths.get("data-for-test/")).forEach(filePath -> {
-      	    if (Files.isRegularFile(filePath)) {
-      	    	Path fileName = filePath.getFileName();
-      	    	String data = "";
-      	    	try {
-  					BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath.toString())));
-  					for(String line = reader.readLine(); line != null; line = reader.readLine()){
-  						data += line + "\n";
-  					}
-  					index(fileName.getFileName().toString(), data);
-  				} catch (Exception e) {
-  					e.printStackTrace();
-  				}
-      	    }});
+          
+//          Files.walk(Paths.get("formatted-data/")).forEach(filePath -> {
+//      	    if (Files.isRegularFile(filePath)) {
+//      	    	Path fileName = filePath.getFileName();
+//      	    	String data = "";
+//      	    	try {
+//  					BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath.toString())));
+//  					for(String line = reader.readLine(); line != null; line = reader.readLine()){
+//  						data += line + "\n";
+//  					}
+//  					index(fileName.getFileName().toString(), data);
+//  				} catch (Exception e) {
+//  					e.printStackTrace();
+//  				}
+//      	    }});
           
           //
           // Don't forget to close the index writer when done
